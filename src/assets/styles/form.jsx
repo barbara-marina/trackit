@@ -5,13 +5,12 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 `;
 export const Image = styled.img`
     width: 180px;
     height: 178px;
-    margin-bottom: 35px;
+    margin: 68px 0 35px 0;
 `;
 export const Form = styled.form`
     width: 80%;
@@ -44,7 +43,7 @@ export const Button = styled.button`
     color: #FFFFFF;
     background-color: #52B6FF;
 `;
-export const Register = styled.p`
+export const Forward = styled.p`
     font-family: 'Lexend Deca';
     font-size: 14px;
     text-align: center;
