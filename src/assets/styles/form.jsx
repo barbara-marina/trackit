@@ -51,3 +51,12 @@ export const Forward = styled.p`
     color: #52B6FF;
     margin-top: 25px;
 `;
+export const Loading = styled.div`
+    width: 100%;
+    height: 45px;
+    border-radius: 4.63636px;
+    background-color: #52B6FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;

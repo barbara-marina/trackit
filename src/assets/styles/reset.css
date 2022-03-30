@@ -47,11 +47,11 @@ a {
 }
 * {
     box-sizing: border-box;
+	flex-shrink: 0;
 }
 body {
 	width: 100vw;
 	height: 100vh;
-
 	font-family: 'Lexend Deca', sans-serif;
 	font-style: normal;
 	font-weight: 400;
