@@ -18,6 +18,7 @@ export const Logo = styled.h1`
     font-family: 'Playball';
     color: #FFFFFF;
     font-size: 40px;
+    cursor: pointer;
 `;
 export const Profile = styled.img`
     width: 51px;

@@ -16,6 +16,7 @@ export const Container = styled.footer`
 export const Option = styled.h2`
     font-size: 18px;
     color: #52B6FF;
+    cursor: pointer;
 `;
 export const Progress = styled.h1`
     width: 91px;
@@ -31,4 +32,5 @@ export const Progress = styled.h1`
     bottom: 10px;
     left: calc(50vw - 45.5px);
     z-index: 2;
+    cursor: pointer;
 `;

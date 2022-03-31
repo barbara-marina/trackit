@@ -13,7 +13,9 @@ export default function Habits() {
                     <Plus>+</Plus>
                 </Title>
 
-                <Habit/>
+                <Habit type="new"/>
+                
+                <Habit type="save"/>
                 
                <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text>
             </Container>
