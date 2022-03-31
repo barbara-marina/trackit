@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import logo from "./../../assets/img/logo.png";
 // import loading from "./../../assets/img/loading.gif";
-import { Container, Image, Form, Input, Button, Forward } from "./../../assets/styles/form";
+import { Container, Image, Form, Input, Button, LinkForward } from "./../../assets/styles/form";
 
 export default function Login() {
     return (
@@ -15,9 +14,7 @@ export default function Login() {
                     <img src={loading} alt="loading"/>
                 </Loading> */}
             </Form>
-            <Link to="/cadastro">
-                    <Forward>Não tem uma conta? Cadastre-se!</Forward>
-            </Link>
+            <LinkForward to="/cadastro"> Não tem uma conta? Cadastre-se!</LinkForward>
         </Container>
     );
 }

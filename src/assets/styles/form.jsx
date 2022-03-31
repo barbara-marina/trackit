@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
     width: 100vw;
@@ -21,16 +22,19 @@ export const Form = styled.form`
 export const Input = styled.input`
     width: 100%;
     height: 45px;
-    background: #FFFFFF;
+    background-color: ${props => props.disabled ? '#F2F2F2' : '#FFFFFF'};
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
     padding-left: 10px;
+    font-family: 'Lexend Deca';
+    font-size: 20px;
+    color: #666666;
 
     &&::placeholder {
     font-family: 'Lexend Deca';
     font-size: 19.976px;
-    color: #DBDBDB;
+    color: ${props => props.disabled ? '#AFAFAF' : '#DBDBDB'};
     }
 `;
 export const Button = styled.button`
@@ -42,8 +46,10 @@ export const Button = styled.button`
     font-size: 21px;
     color: #FFFFFF;
     background-color: #52B6FF;
+    ${props => props.disabled && 'opacity: 0.7' };
+    cursor: pointer;
 `;
-export const Forward = styled.p`
+export const LinkForward = styled(Link)`
     font-family: 'Lexend Deca';
     font-size: 14px;
     text-align: center;
@@ -59,4 +65,5 @@ export const Loading = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${props => props.disabled && 'opacity: 0.7' };
 `;
