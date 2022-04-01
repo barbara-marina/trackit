@@ -1,30 +1,40 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Container, Input, Week, Weekday, Button, Footer, Header, Title, Image } from "./style";
 import trash from "./../../assets/img/trash.png";
+import axios from "axios";
+import TokenContext from "../../contexts/UserContext";
 
 export default function Habit({type}) {
-    const [habit, setHabit] = useState("");
-    const [isSelected, setIsSelected] = useState([]);
+    const {token} = useContext(TokenContext);
+    const [habit, setHabit] = useState({name: "", days: []});
     const week = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
 
     function selectWeekday(w) {
-        if (isSelected.includes(w)){
-            setIsSelected(isSelected.filter((e) => w===e ? false : true));
+        if (habit.days.includes(w)){
+            setHabit({...habit, days: habit.days.filter((e) => w===e ? false : true)});
             return;
         }
-        setIsSelected([...isSelected, w]);
+        setHabit({...habit, days: [...habit.days, w]});
+    }
+
+    function saveHabit() {
+        const config = {headers: { Authorization: `Bearer ${token}`}};
+        const URL_SAVE = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';
+        const request = axios.post(URL_SAVE, habit, config);
+        request.then(r => console.log(r));
+        request.catch(r => console.log(r));
     }
     
     if(type==="new") {
         return (
                 <Container>
-                    <Input type="test" placeholder="nome do hábito" value={habit} onChange={e => setHabit(e.target.value)}/>
+                    <Input type="test" placeholder="nome do hábito" value={habit.name} onChange={e => setHabit({...habit, name: e.target.value})}/>
                     <Week>
-                        {week.map((e) => <Weekday key={e} isSelected={isSelected.includes(e)} onClick={() => selectWeekday(e)}>{e[0]}</Weekday>)}
+                        {week.map((e, i) => <Weekday key={e} isSelected={habit.days.includes(i)} onClick={() => selectWeekday(i)}>{e[0]}</Weekday>)}
                     </Week>
                     <Footer>
                         <Button save={false}>Cancelar</Button>
-                        <Button save={true}>Salvar</Button>
+                        <Button save={true} onClick={saveHabit}>Salvar</Button>
                     </Footer>
                 </Container>
         );
@@ -39,7 +49,7 @@ export default function Habit({type}) {
                 </Header>
                 
                 <Week>
-                    {week.map((e) => <Weekday key={e} isSelected={isSelected.includes(e)}>{e[0]}</Weekday>)}
+                    {week.map((e,i) => <Weekday key={e} isSelected={habit.days.includes(i)}>{e[0]}</Weekday>)}
                 </Week>
             </Container>
         );
