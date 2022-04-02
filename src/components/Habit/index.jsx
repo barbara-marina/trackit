@@ -6,6 +6,7 @@ import UserContext from "../../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function Habit({type, setPlus, plus, habitData, setHabitList}) {
+    
     const {data} = useContext(UserContext);
     const [habit, setHabit] = useState({name: "", days: []});
     const week = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
