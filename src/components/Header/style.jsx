@@ -23,4 +23,6 @@ export const Logo = styled.h1`
 export const Profile = styled.img`
     width: 51px;
     height: 51px;
+    border-radius: 50%;
+    object-fit: cover;
 `;

@@ -47,6 +47,10 @@ export const Button = styled.button`
     color: #FFFFFF;
     background-color: #52B6FF;
     ${props => props.disabled && 'opacity: 0.7' };
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2px;
     cursor: pointer;
 `;
 export const LinkForward = styled(Link)`

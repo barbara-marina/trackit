@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "./../../assets/img/logo.png";
-import loading from "./../../assets/img/loading.gif";
+import { ThreeDots } from "react-loader-spinner";
 import { Container, Image, Form, Input, Button, LinkForward} from "./../../assets/styles/form";
 
 export default function Register() {
@@ -28,7 +28,7 @@ export default function Register() {
                 <Input type="password" placeholder="senha" value={userData.password} onChange={e => setUserData({...userData, password:e.target.value})} disabled={disabled} required/>
                 <Input type="text" placeholder="nome" value={userData.name} onChange={e => setUserData({...userData, name:e.target.value})} disabled={disabled} required/>
                 <Input type="url" placeholder="foto" value={userData.image} onChange={e => setUserData({...userData, image:e.target.value})} disabled={disabled} required/>
-                <Button type="submit" disabled={disabled}>{disabled ? <img src={loading} alt="loading"/> : "Cadastrar" }</Button>
+                <Button type="submit" disabled={disabled}>{disabled ? <ThreeDots width="60" height="60" color="white" ariaLabel="loading"/> : "Cadastrar" }</Button>
             </Form>
             <LinkForward to="/">Já tem uma conta? Faça login!</LinkForward>
         </Container>

@@ -6,13 +6,13 @@ import Habits from "../Habits";
 import Today from "../Today/index";
 import Historic from "../Historic/index";
 import { useState } from "react";
-import TokenContext from "./../../contexts/UserContext";
+import UserContext from "./../../contexts/UserContext";
 
 export default function App() {
-    const [token, setToken] = useState("");
+    const [data, setData] = useState({});
     
     return (
-        <TokenContext.Provider value={{token, setToken}}>
+        <UserContext.Provider value={{data, setData}}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />}/>
@@ -22,7 +22,7 @@ export default function App() {
                     <Route path="/historico" element={<Historic/>}/>
                 </Routes>
             </BrowserRouter>  
-        </TokenContext.Provider>
+        </UserContext.Provider>
         
     );
 }
