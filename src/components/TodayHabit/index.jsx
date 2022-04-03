@@ -4,15 +4,19 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 
-export default function TodayHabit({todayHabit, setTodayHabits}) {
-    const {data} = useContext(UserContext);
+export default function TodayHabit({todayHabit, setTodayHabits, setDone, todayHabits, done}) {
+    const {data, setPercentage} = useContext(UserContext);
+
 
     function updateDatas() {
         const config = {headers: { Authorization: `Bearer ${data.token}`}};
         const URL_TODAY = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
         const request = axios.get(URL_TODAY, config);
         
-        request.then(r => setTodayHabits(r.data));
+        request.then(r => {setTodayHabits(r.data);
+                           setDone(r.data.filter((e) => e.done===true && true));
+                           setPercentage(Math.round((done.length*100)/todayHabits.length));
+        });
         request.catch(e => console.log(e));
     }
 

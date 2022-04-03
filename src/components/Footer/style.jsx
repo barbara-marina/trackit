@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.footer`
     width: 100%;
@@ -18,19 +19,21 @@ export const Option = styled.h2`
     color: #52B6FF;
     cursor: pointer;
 `;
-export const Progress = styled.h1`
+export const LinkToday = styled(Link)`
     width: 91px;
-    height: 91px;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    background-color: #52B6FF;
-    border-radius: 50%;
-    position: fixed;
+    height: 91px;position: fixed;
     bottom: 10px;
     left: calc(50vw - 45.5px);
     z-index: 2;
+`;
+export const Progress = styled.h1`
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 44px;
+    left: calc(50vw - 20px);
+    z-index: 3;
     cursor: pointer;
 `;

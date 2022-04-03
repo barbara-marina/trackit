@@ -18,6 +18,6 @@ export const Title = styled.section`
 export const Progress = styled.h1`
     width: 100%;
     font-size: 18px;
-    color: #BABABA;
+    color: ${props => props.done ? "#8FC549" : "#BABABA"};
     margin: 5px 0 28px 0;
 `;
