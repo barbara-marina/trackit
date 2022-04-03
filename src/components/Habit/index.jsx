@@ -79,20 +79,12 @@ export default function Habit({type, setPlus, plus, habitData, setHabitList}) {
             <Container plus={true}>
                 <Header>
                     <Title>{habitData.name}</Title>
-                    <BsTrash onClick={() => deleteHabit(habitData.id)}/>  
+                    <BsTrash size={20} onClick={() => deleteHabit(habitData.id)}/>  
                 </Header>
                 
                 <Week>
                     {week.map((e,i) => <Weekday key={e} isSelected={habitData.days.includes(i)}>{e[0]}</Weekday>)}
                 </Week>
-            </Container>
-        );
-    }
-
-    if (type==="today") {
-        return (
-            <Container plus={true}>
-                <Title>Ler um capítulo de livro</Title>
             </Container>
         );
     }
