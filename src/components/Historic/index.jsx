@@ -8,7 +8,6 @@ import UserContext from "../../contexts/UserContext";
 export default function Historic() {
     const {data} = useContext(UserContext);
     const navigate = useNavigate();
-    console.log(data);
 
     useEffect(() => !data.token && navigate("/"), [data.token, navigate]);
 

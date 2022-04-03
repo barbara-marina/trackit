@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export default function Habit({type, setPlus, plus, habitData, setHabitList}) {
     
-    const {data} = useContext(UserContext);
+    const {data, updateDatas} = useContext(UserContext);
     const [habit, setHabit] = useState({name: "", days: []});
     const week = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
     const [disabled, setDisabled] = useState(false);
@@ -43,6 +43,7 @@ export default function Habit({type, setPlus, plus, habitData, setHabitList}) {
                             setDisabled(false);
                             setHabit({name: "", days: []});
                             updateHabits();
+                            updateDatas();
         });
         request.catch(r => {setDisabled(false);
                             (habit.name.length===0) && alert("Preencha o nome do hábito!");
@@ -55,7 +56,9 @@ export default function Habit({type, setPlus, plus, habitData, setHabitList}) {
         const config = {headers: { Authorization: `Bearer ${data.token}`}};
         const URL_DELETE = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`;
         const request = axios.delete(URL_DELETE, config);
-        request.then(() => updateHabits());
+        request.then(() => {updateHabits();
+                            updateDatas();
+        });
         request.catch(r => console.log(r));
     }
     

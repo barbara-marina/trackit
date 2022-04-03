@@ -10,7 +10,7 @@ export default function Login() {
     const [userData, setUserData] = useState({email: "", password: ""});
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
-    const {data, setData} = useContext(UserContext);
+    const {setData} = useContext(UserContext);
     
     function submit(e) {
         e.preventDefault();
@@ -18,7 +18,6 @@ export default function Login() {
         const request = axios.post(URL_LOGIN, userData);
         setDisabled(true);
         request.then(r => {setData(r.data);
-                           console.log(data);
                            navigate("/hoje");
         });
         request.catch(e => {setDisabled(false);

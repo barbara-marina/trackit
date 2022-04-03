@@ -1,7 +1,6 @@
 import { Container, Option, LinkToday, Progress} from "./style";
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { Link } from "react-router-dom";
-import { buildStyles } from "react-circular-progressbar";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 

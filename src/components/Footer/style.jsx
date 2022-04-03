@@ -25,6 +25,9 @@ export const LinkToday = styled(Link)`
     bottom: 10px;
     left: calc(50vw - 45.5px);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 export const Progress = styled.h1`
     color: #FFFFFF;
@@ -32,8 +35,6 @@ export const Progress = styled.h1`
     text-align: center;
     border-radius: 50%;
     position: fixed;
-    bottom: 44px;
-    left: calc(50vw - 20px);
     z-index: 3;
     cursor: pointer;
 `;
