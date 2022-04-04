@@ -7,7 +7,6 @@ import UserContext from "../../contexts/UserContext";
 export default function Footer() {
     const {percentage} = useContext(UserContext);
 
-
     return (
         <Container>
             <Link to="/habitos">
@@ -16,7 +15,7 @@ export default function Footer() {
             <LinkToday to="/hoje">
                 <Progress>Hoje</Progress>
                 <CircularProgressbar
-                    value={percentage}
+                    value={(percentage>0 || percentage<=100) ? percentage : 0}
                     background
                     backgroundPadding={6}
                     styles={buildStyles({

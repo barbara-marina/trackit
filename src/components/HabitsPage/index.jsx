@@ -7,7 +7,7 @@ import UserContext from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Habits() {
+export default function HabitsPage() {
     const {data} = useContext(UserContext);
     const navigate = useNavigate();
     const [habitList, setHabitList] = useState([]);
@@ -36,10 +36,12 @@ export default function Habits() {
 
                 <Habit type="new" setHabitList={setHabitList} habitList={habitList} setPlus={setPlus} plus={plus}/>
                 
-                {habitList.length!==0 && habitList.map((habit, i) => <Habit key={i} type="save" habitData={habit} setHabitList={setHabitList}/>)}
-                
-                {habitList.length===0  && <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text>}
-            
+                {habitList.length===0  && 
+                <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                </Text>}
+
+                {habitList.length!==0 && habitList.map((habit, index) => 
+                <Habit key={index} type="saved" habitData={habit} setHabitList={setHabitList}/>)}
             </Container>
             <Footer/>
         </>

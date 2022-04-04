@@ -1,17 +1,17 @@
-import React from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
-import Header from "./../Header/index";
-import Footer from "./../Footer/index";
+import Header from "../Header/index";
+import Footer from "../Footer/index";
 import TodayHabit from "../TodayHabit/index";
-import { Container, Title, Progress } from "./style";
+import { Container, Title, Subtitle } from "./style";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 
-export default function Today() {
-    const {data, percentage, setPercentage, todayHabits, setTodayHabits, done, setDone} = useContext(UserContext);
+export default function TodayPage() {
+    const {data, percentage, setPercentage, todayHabits,
+        setTodayHabits, done, setDone} = useContext(UserContext);
     const navigate = useNavigate();
     dayjs.locale('pt-br');
 
@@ -33,8 +33,13 @@ export default function Today() {
         <>
         <Header/>
         <Container>
-                <Title>{`${(dayjs().format('dd'))[0].toUpperCase()}${(dayjs().format('dddd, DD/MM')).slice(1)}`}</Title>
-                <Progress done={percentage!==0}>{percentage===0 ? 'Nenhum hábito concluído ainda' : `${percentage}% dos hábitos concluídos`}</Progress>
+                <Title>
+                    {`${(dayjs().format('dddd'))[0].toUpperCase()}${(dayjs().format('dddd, DD/MM')).slice(1)}`}
+                </Title>
+                <Subtitle done={(percentage>0 || percentage<=100)}>
+                    {(percentage>0 || percentage<=100) ? `${percentage}% dos hábitos concluídos` 
+                    : 'Nenhum hábito concluído ainda'}
+                </Subtitle>
 
                 {todayHabits.map((todayHabit, i) => <TodayHabit key={i} todayHabit={todayHabit}/>)}
                 

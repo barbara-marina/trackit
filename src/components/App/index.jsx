@@ -1,12 +1,12 @@
-import "./../../assets/styles/reset.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../Login/index";
-import Register from "../Register/index";
-import Habits from "../Habits";
-import Today from "../Today/index";
-import Historic from "../Historic/index";
 import { useState } from "react";
 import UserContext from "./../../contexts/UserContext";
+import LoginPage from "../LoginPage/index";
+import RegisterPage from "../RegisterPage/index";
+import HabitsPage from "../HabitsPage";
+import TodayPage from "../TodayPage/index";
+import HistoricPage from "../HistoricPage/index";
+import "./../../assets/styles/reset.css";
 import axios from "axios";
 
 export default function App() {
@@ -15,30 +15,31 @@ export default function App() {
     const [todayHabits, setTodayHabits] = useState([]);
     const [done, setDone] = useState([]);
     
-    function updateDatas() {
+    function updateTodayHabits() {
         const config = {headers: { Authorization: `Bearer ${data.token}`}};
         const URL_TODAY = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
         const request = axios.get(URL_TODAY, config);
         
-        request.then(r => {setTodayHabits(r.data);
-                           setDone(r.data.filter((e) => e.done===true && true));
+        request.then(response => {setTodayHabits(response.data);
+                           setDone(response.data.filter(habit => habit.done));
                            setPercentage(Math.round((done.length*100)/todayHabits.length));
+                           console.log(todayHabits);
         });
-        request.catch(e => console.log(e));
+        request.catch(error => console.log(error));
     }
 
     return (
-        <UserContext.Provider value={{data, setData, percentage, setPercentage, todayHabits, setTodayHabits, done, setDone, updateDatas}}>
+        <UserContext.Provider value={{data, setData, percentage, setPercentage,
+        todayHabits, setTodayHabits, done, setDone, updateTodayHabits}}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Login />}/>
-                    <Route path="/cadastro" element={<Register />}/>
-                    <Route path="/habitos" element={<Habits/>}/>
-                    <Route path="/hoje" element={<Today/>}/>
-                    <Route path="/historico" element={<Historic/>}/>
+                    <Route path="/" element={<LoginPage />}/>
+                    <Route path="/cadastro" element={<RegisterPage />}/>
+                    <Route path="/habitos" element={<HabitsPage/>}/>
+                    <Route path="/hoje" element={<TodayPage/>}/>
+                    <Route path="/historico" element={<HistoricPage/>}/>
                 </Routes>
             </BrowserRouter>  
         </UserContext.Provider>
-        
     );
 }

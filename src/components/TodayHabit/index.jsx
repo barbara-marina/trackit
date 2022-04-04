@@ -5,7 +5,7 @@ import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 
 export default function TodayHabit({todayHabit}) {
-    const {data, updateDatas} = useContext(UserContext);
+    const {data, updateTodayHabits} = useContext(UserContext);
 
     function checkHabit() {
         const config = {headers: { Authorization: `Bearer ${data.token}`}};
@@ -16,7 +16,7 @@ export default function TodayHabit({todayHabit}) {
         const URL_CHECK = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${todayHabit.id}/${condition}`;
 
         const request = axios.post(URL_CHECK, {}, config);
-        request.then(() => updateDatas());
+        request.then(() => updateTodayHabits());
         request.catch(e => console.log(e));
     }
 

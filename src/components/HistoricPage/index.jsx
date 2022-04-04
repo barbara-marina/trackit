@@ -1,11 +1,11 @@
-import Header from "./../Header/index"
-import Footer from "./../Footer/index"
-import { Container, Title, Progress } from "./style";
+import { Container, Title, Subtitle } from "./style";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
+import Header from "./../Header/index"
+import Footer from "./../Footer/index"
 
-export default function Historic() {
+export default function HistoricPage() {
     const {data} = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export default function Historic() {
         <Header/>
         <Container>
             <Title>Histórico</Title>
-            <Progress>Em breve você poderá ver o histórico dos seus hábitos aqui!</Progress>
+            <Subtitle>Em breve você poderá ver o histórico dos seus hábitos aqui!</Subtitle>
         </Container>
         <Footer/>
         </>
