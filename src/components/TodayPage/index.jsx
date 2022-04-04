@@ -10,10 +10,12 @@ import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 
 export default function TodayPage() {
-    const {data, percentage, setPercentage, todayHabits,
+    const {data, todayHabits,
         setTodayHabits, done, setDone} = useContext(UserContext);
     const navigate = useNavigate();
     dayjs.locale('pt-br');
+
+    let percentage = Math.round((done.length*100)/todayHabits.length);
 
     useEffect(() => !data.token && navigate("/"), [data.token, navigate]);
 
@@ -24,10 +26,9 @@ export default function TodayPage() {
         
         request.then(r => {setTodayHabits(r.data);
                            setDone(r.data.filter((e) => e.done));
-                           setPercentage(Math.round((done.length*100)/todayHabits.length));
         });
-        request.catch(e => console.log("e: ", e));
-    }, [data.token, done.length, todayHabits.length, setPercentage, setDone, setTodayHabits]);
+        request.catch(error => console.log(error));
+    }, [data.token, setDone, setTodayHabits]);
 
     return (
         <>
@@ -36,13 +37,13 @@ export default function TodayPage() {
                 <Title>
                     {`${(dayjs().format('dddd'))[0].toUpperCase()}${(dayjs().format('dddd, DD/MM')).slice(1)}`}
                 </Title>
-                <Subtitle done={(percentage>0 || percentage<=100)}>
-                    {(percentage>0 || percentage<=100) ? `${percentage}% dos hábitos concluídos` 
-                    : 'Nenhum hábito concluído ainda'}
+                <Subtitle done={!(todayHabits.length===0|| percentage===0)}>
+                    {(todayHabits.length===0|| percentage===0) 
+                    ?  'Nenhum hábito concluído ainda'
+                    : `${percentage}% dos hábitos concluídos`}
                 </Subtitle>
 
                 {todayHabits.map((todayHabit, i) => <TodayHabit key={i} todayHabit={todayHabit}/>)}
-                
                 
             </Container>
         <Footer/>

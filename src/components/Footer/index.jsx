@@ -5,7 +5,8 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function Footer() {
-    const {percentage} = useContext(UserContext);
+    const {done, todayHabits} = useContext(UserContext);
+    let percentage = Math.round((done.length*100)/todayHabits.length);
 
     return (
         <Container>

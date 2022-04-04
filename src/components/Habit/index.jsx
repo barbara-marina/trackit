@@ -23,8 +23,7 @@ export default function Habit({type, setPlus, plus, habitData, setHabitList}) {
         const URL_HABIT_LIST = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';
         const config = {headers: { Authorization: `Bearer ${data.token}`}};
         const request = axios.get(URL_HABIT_LIST, config);
-        request.then(response => {setHabitList(response.data);
-                                    console.log(habit);});
+        request.then(response => setHabitList(response.data));
         request.catch(error => console.log(error));
     }
 

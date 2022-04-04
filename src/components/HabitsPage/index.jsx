@@ -20,8 +20,8 @@ export default function HabitsPage() {
         const config = {headers: { Authorization: `Bearer ${data.token}`}};
         const request = axios.get(URL_HABIT_LIST, config);
         
-        request.then(r => setHabitList(r.data));
-        request.catch(e => console.log("e: ", e));
+        request.then(response => setHabitList(response.data));
+        request.catch(error => console.log(error));
     }, [data.token]);
 
 

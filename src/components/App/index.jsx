@@ -11,7 +11,6 @@ import axios from "axios";
 
 export default function App() {
     const [data, setData] = useState({});
-    const [percentage, setPercentage] = useState(0);
     const [todayHabits, setTodayHabits] = useState([]);
     const [done, setDone] = useState([]);
     
@@ -21,16 +20,14 @@ export default function App() {
         const request = axios.get(URL_TODAY, config);
         
         request.then(response => {setTodayHabits(response.data);
-                           setDone(response.data.filter(habit => habit.done));
-                           setPercentage(Math.round((done.length*100)/todayHabits.length));
-                           console.log(todayHabits);
+                                  setDone(response.data.filter(habit => habit.done));
         });
         request.catch(error => console.log(error));
     }
 
     return (
-        <UserContext.Provider value={{data, setData, percentage, setPercentage,
-        todayHabits, setTodayHabits, done, setDone, updateTodayHabits}}>
+        <UserContext.Provider value={{data, setData, todayHabits,
+        setTodayHabits, done, setDone, updateTodayHabits}}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage />}/>

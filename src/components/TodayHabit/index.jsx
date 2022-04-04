@@ -17,7 +17,7 @@ export default function TodayHabit({todayHabit}) {
 
         const request = axios.post(URL_CHECK, {}, config);
         request.then(() => updateTodayHabits());
-        request.catch(e => console.log(e));
+        request.catch(error => console.log(error));
     }
 
     return (
